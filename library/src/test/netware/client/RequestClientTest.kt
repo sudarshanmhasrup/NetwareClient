@@ -67,4 +67,14 @@ class RequestClientTest {
 
         assertEquals(true, requestClient.checkForValidRequestMethods())
     }
+
+    @Test
+    fun testInvalidNetworkRequestErrorLog() {
+
+        val requestClient = RequestClient(
+            url = "http://localhost:3000",
+            method = "SET"
+        ).build()
+
+    }
 }

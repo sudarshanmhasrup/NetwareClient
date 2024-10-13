@@ -84,6 +84,10 @@ class RequestClient(
         return this
     }
 
+    fun response() = response
+    fun error() = error
+    fun isSuccess() = isSuccess
+
     internal fun checkForValidRequestMethods(): Boolean {
         return networkRequestMethod in listOf("GET", "POST", "PUT", "PATCH", "DELETE")
     }
