@@ -1,5 +1,5 @@
 package netware.client.holders.util
 
-enum class Holders {
+internal enum class Holders {
     RESPONSE, ERROR
 }

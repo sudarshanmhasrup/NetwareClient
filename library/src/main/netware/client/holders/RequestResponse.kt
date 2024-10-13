@@ -2,6 +2,8 @@ package netware.client.holders
 
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
+import netware.client.holders.util.Holders
+import netware.client.holders.util.formattedResponse
 
 data class RequestResponse(
     private val statusCode: Int = 0,
@@ -30,17 +32,12 @@ data class RequestResponse(
         }
 
         return if (isFormatted) {
-            """
-                ----------------------------------------------------------------------
-                Status code: $statusCode, Status: $status.
-                Response: ------------------------------------------------------------
-                
-            """.trimIndent() +
-prettyResponse + """
-
-                ----------------------------------------------------------------------
-""".trimIndent()
-
+            formattedResponse(
+                statusCode = statusCode,
+                status = status,
+                message = response,
+                holders = Holders.RESPONSE
+            )
         } else {
             """
                 Status code: $statusCode, Status: $status.
