@@ -1,7 +1,9 @@
 [versions]
 kotlin = "2.0.20"
+kotlinSerialization = "2.0.20"
 
 [libraries]
+kotlinSerialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlinSerialization" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
