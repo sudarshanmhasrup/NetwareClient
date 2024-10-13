@@ -12,7 +12,7 @@ data class RequestResponse(
 
     fun getStatusCode() = statusCode
     fun getStatus() = status
-fun getResponse() = response
+    fun getResponse() = response
     fun getResponseHeaders() = responseHeaders
 
     // Log functions
@@ -23,7 +23,7 @@ fun getResponse() = response
         try {
             val jsonElement = JsonParser.parseString(response)
             val gson = GsonBuilder().setPrettyPrinting().create()
-            prettyResponse= gson.toString()
+            prettyResponse= gson.toJson(jsonElement).toString()
 
         } catch (exception: Exception) {
             prettyResponse= response
@@ -32,11 +32,15 @@ fun getResponse() = response
         return if (isFormatted) {
             """
                 ----------------------------------------------------------------------
-                Status code: $statusCode, Status: $status
-                Response--------------------------------------------------------------
-                $prettyResponse
+                Status code: $statusCode, Status: $status.
+                Response: ------------------------------------------------------------
+                
+            """.trimIndent() +
+prettyResponse + """
+
                 ----------------------------------------------------------------------
-                """.trimIndent()
+""".trimIndent()
+
         } else {
             """
                 Status code: $statusCode, Status: $status.

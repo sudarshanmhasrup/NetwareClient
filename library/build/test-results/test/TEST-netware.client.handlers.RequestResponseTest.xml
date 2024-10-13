@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="netware.client.handlers.RequestResponseTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-10-13T09:47:46" hostname="TUF-A17" time="0.059">
+<testsuite name="netware.client.handlers.RequestResponseTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-10-13T10:26:15" hostname="TUF-A17" time="0.105">
   <properties/>
-  <testcase name="testUnformattedLog()" classname="netware.client.handlers.RequestResponseTest" time="0.059"/>
+  <testcase name="testFormattedLog()" classname="netware.client.handlers.RequestResponseTest" time="0.097"/>
+  <testcase name="testUnformattedLog()" classname="netware.client.handlers.RequestResponseTest" time="0.007"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
