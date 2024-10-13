@@ -11,6 +11,7 @@ repositories {
 }
 
 dependencies {
+    implementation(libs.gson)
     testImplementation(libs.jupiterApi)
     testImplementation(libs.jupiterEngine)
 }
