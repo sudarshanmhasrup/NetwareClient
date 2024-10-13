@@ -61,6 +61,10 @@ class RequestClient(
         return this
     }
 
+    internal fun checkForValidRequestMethods(): Boolean {
+        return networkRequestMethod in listOf("GET", "POST", "PUT", "PATCH", "DELETE")
+    }
+
     private fun addHeaders(headers: Map<String, String>) {
         for ((key, value) in headers) {
             networkRequestHeaders[key] = value
