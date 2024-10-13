@@ -1,8 +1,5 @@
 package netware.client
 
-import com.google.gson.JsonElement
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -58,5 +55,16 @@ class RequestClientTest {
         )
 
         assertEquals(requestBody, requestClient.getNetworkRequestBody())
+    }
+
+    @Test
+    fun testNetworkRequestBodyValidation() {
+
+        val requestClient = RequestClient(
+            url = "http://localhost:3000",
+            method = "POST"
+        )
+
+        assertEquals(true, requestClient.checkForValidRequestMethods())
     }
 }
