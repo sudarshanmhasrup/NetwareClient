@@ -1,0 +1,8 @@
+# Gradle cache folder
+.gradle
+
+# Idea configuration folder
+.idea
+
+# Kotlin classes
+.kotlin
