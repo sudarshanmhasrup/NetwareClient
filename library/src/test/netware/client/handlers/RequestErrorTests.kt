@@ -23,4 +23,29 @@ class RequestErrorTests {
         """.trimIndent(), requestError.getLog())
 
     }
+
+    @Test
+    fun tesFormattedLog() {
+
+        val requestError = RequestError(
+            statusCode = 400,
+            status = "Unauthorized",
+            message = """
+                {"message":"Access denied"}
+            """.trimIndent()
+        )
+
+        assertEquals("""
+            ----------------------------------------------------------------------
+            Status code: 400, Status: Unauthorized.
+            Message: -------------------------------------------------------------
+            {
+              "message": "Access denied"
+            }
+            ----------------------------------------------------------------------
+        """.trimIndent(), requestError.getLog(
+            isFormatted = true
+        ))
+
+    }
 }
