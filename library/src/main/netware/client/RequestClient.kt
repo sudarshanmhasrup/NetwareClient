@@ -1,6 +1,5 @@
 package netware.client
 
-import com.google.gson.JsonObject
 import netware.client.callbacks.ClientCallback
 import netware.client.holders.RequestError
 import netware.client.holders.RequestResponse
@@ -14,7 +13,7 @@ class RequestClient(
     private val networkRequestUrl = url
     private var networkRequestMethod = "GET"
     private val networkRequestHeaders = mutableMapOf<String, String>()
-    private var networkRequestBody: JsonObject? = null
+    private var networkRequestBody: String? = null
 
     // Secondary constructor 1
     constructor(url: String, method: String): this(url) {
@@ -28,7 +27,7 @@ class RequestClient(
     }
 
     // Secondary constructor 3
-    constructor(url: String, method: String, headers: Map<String, String>, body: JsonObject): this(url) {
+    constructor(url: String, method: String, headers: Map<String, String>, body: String): this(url) {
         networkRequestMethod = method
         addHeaders(headers)
         networkRequestBody = body
@@ -41,7 +40,7 @@ class RequestClient(
     }
 
     // Secondary constructor 4
-    constructor(url: String, method: String, body: JsonObject): this(url) {
+    constructor(url: String, method: String, body: String): this(url) {
         networkRequestMethod = method
         networkRequestBody = body
     }
