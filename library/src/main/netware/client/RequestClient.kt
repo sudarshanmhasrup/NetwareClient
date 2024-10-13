@@ -1,5 +1,6 @@
 package netware.client
 
+import netware.client.callbacks.ClientCallback
 import netware.client.holders.RequestError
 import netware.client.holders.RequestResponse
 
@@ -19,4 +20,13 @@ class RequestClient(
     var error = RequestError()
     var isSuccess = false
 
+    // Build function: With callback
+    fun build(clientCallback: ClientCallback): RequestClient {
+        return this
+    }
+
+    // Build function: Without callback
+    fun build(): RequestClient {
+        return this
+    }
 }
