@@ -65,7 +65,7 @@ class RequestClientTest {
             method = "POST"
         )
 
-        assertEquals(true, requestClient.checkForValidRequestMethods())
+        assertEquals(true, requestClient.checkForValidRequestMethod())
     }
 
     @Test
@@ -76,5 +76,9 @@ class RequestClientTest {
             method = "SET"
         ).build()
 
+        assertEquals("""
+                Status code: 1000, Status: Failed.
+                Message: "SET" is not a valid HTTP method.
+            """.trimIndent(), requestClient.error().getLog())
     }
 }

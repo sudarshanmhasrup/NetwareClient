@@ -40,7 +40,7 @@ class RequestClient(
         addHeaders(headers)
     }
 
-    // Secondary constructor 4
+    // Secondary constructor 5
     constructor(url: String, method: String, body: String): this(url) {
         networkRequestMethod = method
         networkRequestBody = body
@@ -51,9 +51,11 @@ class RequestClient(
     private var error = RequestError()
     private var isSuccess = false
 
-    private val isNetworkRequestMethodIsValid = checkForValidRequestMethods()
+    private fun isNetworkRequestMethodIsValid(): Boolean {
+        return networkRequestMethod in listOf("GET", "POST", "PUT", "PATCH", "DELETE")
+    }
 
-    private val invalidNetworkRequestError = RequestError(
+    val invalidNetworkRequestLog = RequestError(
         statusCode = 1000,
         status = "Failed",
         message = "\"$networkRequestMethod\" is not a valid HTTP method."
@@ -61,25 +63,37 @@ class RequestClient(
 
     // Build function: With callback
     fun build(clientCallback: ClientCallback): RequestClient {
-        if (isNetworkRequestMethodIsValid) {
-
-        } else {
+        if (!isNetworkRequestMethodIsValid()) {
             isSuccess = false
             clientCallback.onError(
-                requestError = invalidNetworkRequestError
+                requestError = RequestError(
+                    statusCode = 1000,
+                    status = "Failed",
+                    message = "\"$networkRequestMethod\" is not a valid HTTP method."
+                )
             )
-            error = invalidNetworkRequestError
+            error = RequestError(
+                statusCode = 1000,
+                status = "Failed",
+                message = "\"$networkRequestMethod\" is not a valid HTTP method."
+            )
+        } else {
+
         }
         return this
     }
 
     // Build function: Without callback
     fun build(): RequestClient {
-        if (isNetworkRequestMethodIsValid) {
-
-        } else {
+        if (!isNetworkRequestMethodIsValid()) {
             isSuccess = false
-            error = invalidNetworkRequestError
+            error = RequestError(
+                statusCode = 1000,
+                status = "Failed",
+                message = "\"$networkRequestMethod\" is not a valid HTTP method."
+            )
+        } else {
+
         }
         return this
     }
@@ -87,10 +101,6 @@ class RequestClient(
     fun response() = response
     fun error() = error
     fun isSuccess() = isSuccess
-
-    internal fun checkForValidRequestMethods(): Boolean {
-        return networkRequestMethod in listOf("GET", "POST", "PUT", "PATCH", "DELETE")
-    }
 
     private fun addHeaders(headers: Map<String, String>) {
         for ((key, value) in headers) {
@@ -102,4 +112,5 @@ class RequestClient(
     internal fun getNetworkRequestMethod() = networkRequestMethod
     internal fun getNetworkRequestHeaders() = networkRequestHeaders
     internal fun getNetworkRequestBody() = networkRequestBody
+    internal fun checkForValidRequestMethod() = isNetworkRequestMethodIsValid()
 }
