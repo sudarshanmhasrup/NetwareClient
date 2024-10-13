@@ -5,6 +5,7 @@ import com.google.gson.JsonParser
 import netware.client.holders.util.Holders
 import netware.client.holders.util.formattedResponse
 
+@Suppress("unused")
 data class RequestError(
     private val statusCode: Int = 0,
     private val status: String = "No status found",
@@ -17,18 +18,6 @@ data class RequestError(
 
     // Log functions
     fun getLog(isFormatted: Boolean): String {
-
-        var prettyResponse: String
-
-        try {
-            val jsonElement = JsonParser.parseString(message)
-            val gson = GsonBuilder().setPrettyPrinting().create()
-            prettyResponse= gson.toJson(jsonElement).toString()
-
-        } catch (exception: Exception) {
-            prettyResponse= message
-        }
-
         return if (isFormatted) {
             formattedResponse(
                 statusCode = statusCode,
