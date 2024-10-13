@@ -3,6 +3,7 @@ package netware.client.holders.util
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 
+// Top level function to return well formatted response and error
 internal fun formattedResponse(
     statusCode: Int,
     status: String,

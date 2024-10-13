@@ -3,6 +3,7 @@ package netware.client.holders
 import netware.client.holders.util.Holders
 import netware.client.holders.util.formattedResponse
 
+// Data class containing response for every network request
 @Suppress("unused")
 data class RequestResponse(
     private val statusCode: Int = 0,

@@ -1,10 +1,9 @@
 package netware.client.holders
 
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
 import netware.client.holders.util.Holders
 import netware.client.holders.util.formattedResponse
 
+// Data class containing request error for every network request
 @Suppress("unused")
 data class RequestError(
     private val statusCode: Int = 0,

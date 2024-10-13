@@ -49,12 +49,12 @@ class RequestClientTest {
     @Test
     fun testBodyInitialization() {
 
-        val requestBody = JsonParser.parseString("""{"message":"Hello World"}""")
+        val requestBody = """{"message":"Hello World"}"""
 
         val requestClient = RequestClient(
             url = "http://localhost:3000",
             method = "GET",
-            body = JsonObject()
+            body = requestBody
         )
 
         assertEquals(requestBody, requestClient.getNetworkRequestBody())

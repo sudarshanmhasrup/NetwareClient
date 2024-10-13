@@ -4,6 +4,7 @@ import netware.client.callbacks.ClientCallback
 import netware.client.holders.RequestError
 import netware.client.holders.RequestResponse
 
+// Main class which is used to send HTTP requests
 @Suppress("unused")
 class RequestClient(
     url: String

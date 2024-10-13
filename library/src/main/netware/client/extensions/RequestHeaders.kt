@@ -1,5 +1,6 @@
 package netware.client.extensions
 
+// Extension class for easy header implementation
 @Suppress("unused")
 class RequestHeaders {
 
