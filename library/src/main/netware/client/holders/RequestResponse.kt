@@ -9,14 +9,18 @@ data class RequestResponse(
 
     fun getStatusCode() = statusCode
     fun getStatus() = status
-    fun getResponse() = response
+fun getResponse() = response
     fun getResponseHeaders() = responseHeaders
 
     // Log functions
     fun getLog(isFormatted: Boolean): String {
         return if (isFormatted) {
             """
-                    
+                ----------------------------------------------------------------------
+                Status code: $statusCode, Status: $status
+                Response--------------------------------------------------------------
+                $response
+                ----------------------------------------------------------------------
                 """.trimIndent()
         } else {
             """
