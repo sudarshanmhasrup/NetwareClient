@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-
+    api(libs.kotlinSerialization)
 }
 
 // Source and test directory
