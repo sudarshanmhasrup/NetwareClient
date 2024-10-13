@@ -47,17 +47,40 @@ class RequestClient(
     }
 
     // Network request response
-    var response = RequestResponse()
-    var error = RequestError()
-    var isSuccess = false
+    private var response = RequestResponse()
+    private var error = RequestError()
+    private var isSuccess = false
+
+    private val isNetworkRequestMethodIsValid = checkForValidRequestMethods()
+
+    private val invalidNetworkRequestError = RequestError(
+        statusCode = 1000,
+        status = "Failed",
+        message = "\"$networkRequestMethod\" is not a valid HTTP method."
+    )
 
     // Build function: With callback
     fun build(clientCallback: ClientCallback): RequestClient {
+        if (isNetworkRequestMethodIsValid) {
+
+        } else {
+            isSuccess = false
+            clientCallback.onError(
+                requestError = invalidNetworkRequestError
+            )
+            error = invalidNetworkRequestError
+        }
         return this
     }
 
     // Build function: Without callback
     fun build(): RequestClient {
+        if (isNetworkRequestMethodIsValid) {
+
+        } else {
+            isSuccess = false
+            error = invalidNetworkRequestError
+        }
         return this
     }
 
