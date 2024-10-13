@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="netware.client.handlers.RequestResponseTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-10-13T10:46:41" hostname="TUF-A17" time="0.097">
-  <properties/>
-  <testcase name="testFormattedLog()" classname="netware.client.handlers.RequestResponseTests" time="0.091"/>
-  <testcase name="testUnformattedLog()" classname="netware.client.handlers.RequestResponseTests" time="0.005"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
