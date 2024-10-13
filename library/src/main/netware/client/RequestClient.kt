@@ -3,8 +3,9 @@ package netware.client
 import netware.client.holders.RequestError
 import netware.client.holders.RequestResponse
 
+@Suppress("unused")
 class RequestClient(
-    private val url: String
+    url: String
 ) {
 
     // Network request properties
