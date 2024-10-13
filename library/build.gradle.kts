@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     testImplementation(libs.jupiterApi)
+    testImplementation(libs.jupiterEngine)
 }
 
 // Source and test directory
