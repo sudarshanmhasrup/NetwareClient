@@ -6,3 +6,6 @@
 
 # Kotlin classes
 .kotlin
+
+# Build
+library/build
