@@ -1,9 +1,11 @@
 [versions]
 kotlin = "2.0.20"
 kotlinSerialization = "2.0.20"
+jupiterApi = "5.11.2"
 
 [libraries]
 kotlinSerialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlinSerialization" }
+jupiterApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "jupiterApi" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
