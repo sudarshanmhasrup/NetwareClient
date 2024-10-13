@@ -4,7 +4,7 @@ import netware.client.holders.RequestResponse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class RequestResponseTest {
+class RequestResponseTests {
 
     @Test
     fun testUnformattedLog() {
