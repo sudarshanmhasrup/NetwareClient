@@ -4,6 +4,7 @@ import netware.client.handlers.requestClientExceptionDecoder
 import netware.client.holders.HttpResponseContainer
 import netware.client.holders.RequestError
 import netware.client.holders.RequestResponse
+import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URI
 import javax.net.ssl.HttpsURLConnection
@@ -55,6 +56,14 @@ internal class RequestClientExecutor(
         if (networkRequestHeaders != null) {
             for ((key, value) in networkRequestHeaders) {
                 networkRequestConnection.setRequestProperty(key, value)
+            }
+        }
+
+        if (networkRequestBody != null) {
+            networkRequestConnection.doInput = true
+            OutputStreamWriter(networkRequestConnection.outputStream).use { writer ->
+                writer.write(networkRequestBody)
+                writer.flush()
             }
         }
 
