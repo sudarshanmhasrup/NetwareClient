@@ -7,6 +7,7 @@ springBootStarterWeb = "3.3.4"
 kotlinSpring = "2.0.20"
 junitPlatformLauncher = "1.11.2"
 kotlinxSerialization = "1.5.1"
+kotlinSerialization = "2.0.20"
 
 [libraries]
 jupiterApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "jupiterApi" }
@@ -19,3 +20,4 @@ kotlixSerialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-seriali
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinSpring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlinSpring"}
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
