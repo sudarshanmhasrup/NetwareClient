@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-
+    implementation(libs.springBootStarterWeb)
 }
 
 // Source directory
