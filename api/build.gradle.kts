@@ -26,3 +26,6 @@ sourceSets {
 tasks.test {
     useJUnitPlatform()
 }
+
+// Build directory
+layout.buildDirectory.set(file("${rootDir}/build/api"))
