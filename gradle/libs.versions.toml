@@ -6,6 +6,7 @@ gson = "2.11.0"
 springBootStarterWeb = "3.3.4"
 kotlinSpring = "2.0.20"
 junitPlatformLauncher = "1.11.2"
+kotlinxSerialization = "1.5.1"
 
 [libraries]
 jupiterApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "jupiterApi" }
@@ -13,6 +14,7 @@ jupiterEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", ve
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 springBootStarterWeb = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "springBootStarterWeb" }
 junitPlatformLauncher = { group = "org.junit.platform", name = "junit-platform-launcher", version.ref = "junitPlatformLauncher" }
+kotlixSerialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
