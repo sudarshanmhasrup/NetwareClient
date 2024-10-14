@@ -2,9 +2,13 @@ plugins {
 
 }
 
+// Library metadata
 private val groupId = "com.github.sudarshanmhasrup"
 private val artifactId = "netwareclient"
-private val version = "1.0.0-SNAPSHOT"
+private val releaseVersion = "1.0.0-SNAPSHOT"
+
+group = groupId
+version = releaseVersion
 
 repositories {
     mavenCentral()

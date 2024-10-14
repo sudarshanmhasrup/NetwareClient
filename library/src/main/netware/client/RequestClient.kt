@@ -5,7 +5,20 @@ import netware.client.executors.RequestClientExecutor
 import netware.client.holders.RequestError
 import netware.client.holders.RequestResponse
 
-// Main class which is used to send HTTP requests
+/*
+    This class is reponsible for building and executing network requests. This class utilizes multiple secondary
+parameters, enabling the user to bypass unnecessary parameter lists when using it in Java.
+
+    It supports the following HTTP requests:
+    1) GET.
+    2) POST.
+    3) PATCH.
+    4) DELETE.
+    5) PUT.
+
+    This class let's library users to handle the network requests using callback and without callback build functions.
+Also, this class uses the RequestClientExecutor class behind the scenes to execute network requests.
+ */
 @Suppress("unused")
 class RequestClient(
     url: String
@@ -18,31 +31,31 @@ class RequestClient(
     private var networkRequestBody: String? = null
 
     // Secondary constructor 1
-    constructor(url: String, method: String): this(url) {
+    constructor(url: String, method: String) : this(url) {
         networkRequestMethod = method
     }
 
     // Secondary constructor 2
-    constructor(url: String, method: String, headers: Map<String, String>): this(url) {
+    constructor(url: String, method: String, headers: Map<String, String>) : this(url) {
         networkRequestMethod = method
         addHeaders(headers)
     }
 
     // Secondary constructor 3
-    constructor(url: String, method: String, headers: Map<String, String>, body: String): this(url) {
+    constructor(url: String, method: String, headers: Map<String, String>, body: String) : this(url) {
         networkRequestMethod = method
         addHeaders(headers)
         networkRequestBody = body
     }
 
     // Secondary constructor 4
-    constructor(url: String, headers: Map<String, String>): this(url) {
+    constructor(url: String, headers: Map<String, String>) : this(url) {
         networkRequestMethod = "GET"
         addHeaders(headers)
     }
 
     // Secondary constructor 5
-    constructor(url: String, method: String, body: String): this(url) {
+    constructor(url: String, method: String, body: String) : this(url) {
         networkRequestMethod = method
         networkRequestBody = body
     }
@@ -55,12 +68,6 @@ class RequestClient(
     private fun isNetworkRequestMethodIsValid(): Boolean {
         return networkRequestMethod in listOf("GET", "POST", "PUT", "PATCH", "DELETE")
     }
-
-    val invalidNetworkRequestLog = RequestError(
-        statusCode = 400,
-        status = "Bad request",
-        message = "\"$networkRequestMethod\" is not a valid HTTP method."
-    )
 
     // Build function: With callback
     fun build(clientCallback: ClientCallback): RequestClient {
@@ -79,7 +86,6 @@ class RequestClient(
                 message = "\"$networkRequestMethod\" is not a valid HTTP method."
             )
         } else {
-
             val requestClientExecutor = RequestClientExecutor(
                 networkRequestUrl = networkRequestUrl,
                 networkRequestMethod = networkRequestMethod,

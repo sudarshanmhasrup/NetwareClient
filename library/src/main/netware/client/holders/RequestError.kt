@@ -3,7 +3,7 @@ package netware.client.holders
 import netware.client.holders.util.Holders
 import netware.client.holders.util.formattedResponse
 
-// Data class containing request error for every network request
+// This class contains error of every network request sent using RequestClient
 @Suppress("unused")
 data class RequestError(
     private val statusCode: Int = 0,

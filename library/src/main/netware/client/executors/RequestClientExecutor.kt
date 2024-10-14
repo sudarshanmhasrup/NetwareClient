@@ -9,7 +9,16 @@ import java.net.HttpURLConnection
 import java.net.URI
 import javax.net.ssl.HttpsURLConnection
 
-// Class to execute network requests for RequestClient
+/*
+    This class is responsible for executing all network requests being sent using RequestClient class.
+
+    This class is responsible for executing all network requests being sent using RequestClient class. It has two
+    functions:
+        1) validateNetworkRequest(): To check if network request protocol is valid and execute the network requests.
+        2) executeNetworkRequest(): To execute network requests.
+
+     It also uses requestClientExceptionDecoder() function to simplify network request exceptions.
+ */
 @Suppress("unused")
 internal class RequestClientExecutor(
     private val networkRequestUrl: String,
