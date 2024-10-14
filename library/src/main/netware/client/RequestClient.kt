@@ -6,7 +6,7 @@ import netware.client.holders.RequestError
 import netware.client.holders.RequestResponse
 
 /*
-    This class is reponsible for building and executing network requests. This class utilizes multiple secondary
+    This class is responsible for building and executing network requests. This class utilizes multiple secondary
 parameters, enabling the user to bypass unnecessary parameter lists when using it in Java.
 
     It supports the following HTTP requests:
