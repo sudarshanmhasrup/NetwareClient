@@ -7,6 +7,7 @@ import java.net.URI
 import javax.net.ssl.HttpsURLConnection
 
 // Class to execute network requests for RequestClient
+@Suppress("unused")
 internal class RequestClientExecutor(
     private val networkRequestUrl: String,
     private val networkRequestMethod: String,
