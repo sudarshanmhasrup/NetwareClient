@@ -71,52 +71,51 @@ class RequestClient(
 
     // Build function: With callback
     fun build(clientCallback: ClientCallback): RequestClient {
-        if (!isNetworkRequestMethodIsValid()) {
-            isSuccess = false
-            clientCallback.onError(
-                requestError = RequestError(
-                    statusCode = 400,
-                    status = "Bad request",
-                    message = "\"$networkRequestMethod\" is not a valid HTTP method."
-                )
-            )
-            error = RequestError(
-                statusCode = 400,
-                status = "Bad request",
-                message = "\"$networkRequestMethod\" is not a valid HTTP method."
-            )
-        } else {
-            val requestClientExecutor = RequestClientExecutor(
-                networkRequestUrl = networkRequestUrl,
-                networkRequestMethod = networkRequestMethod,
-                networkRequestHeaders = networkRequestHeaders,
-                networkRequestBody = networkRequestBody
-            ).validateNetworkRequest()
-
-            if (requestClientExecutor.isSuccess()) {
+        executor(object: ClientCallback {
+            override fun onSuccess(requestResponse: RequestResponse) {
                 clientCallback.onSuccess(
-                    requestResponse = requestClientExecutor.getRequestResponse()
-                )
-            } else {
-                clientCallback.onError(
-                    requestError = requestClientExecutor.getRequestError()
+                    requestResponse = requestResponse
                 )
             }
-        }
+
+            override fun onError(requestError: RequestError) {
+                clientCallback.onError(
+                    requestError = requestError
+                )
+            }
+        })
         return this
     }
 
     // Build function: Without callback
     fun build(): RequestClient {
+        executor(object: ClientCallback {
+            override fun onSuccess(requestResponse: RequestResponse) {
+                isSuccess = true
+            }
+
+            override fun onError(requestError: RequestError) {
+                isSuccess = false
+            }
+        })
+        return this
+    }
+
+    private fun getInvalidNetworkRequestError() = RequestError(
+        statusCode = 400,
+        status = "Bad request",
+        message = "\"$networkRequestMethod\" is not a valid HTTP method."
+    )
+
+    private fun executor(clientCallback: ClientCallback) {
+
         if (!isNetworkRequestMethodIsValid()) {
             isSuccess = false
-            error = RequestError(
-                statusCode = 400,
-                status = "Bad request",
-                message = "\"$networkRequestMethod\" is not a valid HTTP method."
+            error = getInvalidNetworkRequestError()
+            clientCallback.onError(
+                requestError = getInvalidNetworkRequestError()
             )
         } else {
-
             val requestClientExecutor = RequestClientExecutor(
                 networkRequestUrl = networkRequestUrl,
                 networkRequestMethod = networkRequestMethod,
@@ -127,12 +126,17 @@ class RequestClient(
             if (requestClientExecutor.isSuccess()) {
                 isSuccess = true
                 response = requestClientExecutor.getRequestResponse()
+                clientCallback.onSuccess(
+                    requestResponse = requestClientExecutor.getRequestResponse()
+                )
             } else {
                 isSuccess = false
                 error = requestClientExecutor.getRequestError()
+                clientCallback.onError(
+                    requestError = requestClientExecutor.getRequestError()
+                )
             }
         }
-        return this
     }
 
     fun response() = response
