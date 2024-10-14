@@ -2,6 +2,9 @@ package netware.client.executors
 
 import netware.client.holders.HttpResponseContainer
 import netware.client.holders.RequestError
+import java.net.HttpURLConnection
+import java.net.URI
+import javax.net.ssl.HttpsURLConnection
 
 // Class to execute network requests for RequestClient
 internal class RequestClientExecutor(
@@ -14,10 +17,10 @@ internal class RequestClientExecutor(
     internal fun validateNetworkRequest(): HttpResponseContainer {
         return when {
             networkRequestUrl.startsWith("http://") -> {
-                executeRequestUrl(isHttp = false)
+                executeRequestUrl(isHTTPs = false)
             }
             networkRequestUrl.startsWith("https://") -> {
-                executeRequestUrl(isHttp = true)
+                executeRequestUrl(isHTTPs = true)
             }
             else ->
                 HttpResponseContainer(
@@ -31,7 +34,25 @@ internal class RequestClientExecutor(
         }
     }
 
-    internal fun executeRequestUrl(isHttp: Boolean): HttpResponseContainer {
+    internal fun executeRequestUrl(isHTTPs: Boolean): HttpResponseContainer {
+
+        val networkRequestUri = URI(networkRequestUrl)
+        val networkRequestUrl = networkRequestUri.toURL()
+
+        val networkRequestConnection = if (isHTTPs) {
+            networkRequestUrl.openConnection() as HttpURLConnection
+        } else {
+            networkRequestUrl.openConnection() as HttpsURLConnection
+        }
+
+        networkRequestConnection.requestMethod = networkRequestMethod
+
+        if (networkRequestHeaders != null) {
+            for ((key, value ) in networkRequestHeaders) {
+                networkRequestConnection.setRequestProperty(key, value)
+            }
+        }
+
         return HttpResponseContainer()
     }
 }
