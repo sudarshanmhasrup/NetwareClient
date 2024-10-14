@@ -3,11 +3,13 @@ kotlin = "2.0.20"
 jupiterApi = "5.11.2"
 jupiterEngine = "5.11.2"
 gson = "2.11.0"
+springBootStarterWeb = "3.3.4"
 
 [libraries]
 jupiterApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "jupiterApi" }
 jupiterEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "jupiterEngine" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+springBootStarterWeb = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "springBootStarterWeb" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
