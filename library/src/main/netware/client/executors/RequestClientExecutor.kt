@@ -1,7 +1,9 @@
 package netware.client.executors
 
+import netware.client.handlers.requestClientExceptionDecoder
 import netware.client.holders.HttpResponseContainer
 import netware.client.holders.RequestError
+import netware.client.holders.RequestResponse
 import java.net.HttpURLConnection
 import java.net.URI
 import javax.net.ssl.HttpsURLConnection
@@ -20,9 +22,11 @@ internal class RequestClientExecutor(
             networkRequestUrl.startsWith("http://") -> {
                 executeNetworkRequest(isHTTPs = false)
             }
+
             networkRequestUrl.startsWith("https://") -> {
                 executeNetworkRequest(isHTTPs = true)
             }
+
             else ->
                 HttpResponseContainer(
                     isSuccess = false,
@@ -39,6 +43,7 @@ internal class RequestClientExecutor(
 
         val networkRequestUri = URI(networkRequestUrl)
         val networkRequestUrl = networkRequestUri.toURL()
+        var result = HttpResponseContainer()
 
         val networkRequestConnection = if (isHTTPs) {
             networkRequestUrl.openConnection() as HttpURLConnection
@@ -49,11 +54,50 @@ internal class RequestClientExecutor(
         networkRequestConnection.requestMethod = networkRequestMethod
 
         if (networkRequestHeaders != null) {
-            for ((key, value ) in networkRequestHeaders) {
+            for ((key, value) in networkRequestHeaders) {
                 networkRequestConnection.setRequestProperty(key, value)
             }
         }
 
-        return HttpResponseContainer()
+        try {
+
+            val serverResponseStatusCode = networkRequestConnection.responseCode
+            val serverResponseStatus = networkRequestConnection.responseMessage ?: "No status found"
+
+            val serverResponse = if (serverResponseStatusCode in 200..299) {
+                networkRequestConnection.inputStream.bufferedReader().use {
+                    it.readText()
+                }
+            } else {
+                networkRequestConnection.errorStream.bufferedReader().use {
+                    it.readText()
+                }
+            }
+
+            val responseHeaders: MutableMap<String, String> = mutableMapOf()
+
+            // Read response map
+            networkRequestConnection.headerFields.forEach {
+                responseHeaders[it.key] = it.value.toString()
+            }
+            result = HttpResponseContainer(
+                isSuccess = true,
+                requestResponse = RequestResponse(
+                    statusCode = serverResponseStatusCode,
+                    status = serverResponseStatus,
+                    response = serverResponse,
+                    responseHeaders = responseHeaders
+                )
+            )
+        } catch (exception: Exception) {
+            result = HttpResponseContainer(
+                isSuccess = false,
+                requestError = requestClientExceptionDecoder(exception)
+            )
+        } finally {
+            networkRequestConnection.disconnect()
+        }
+
+        return result
     }
 }

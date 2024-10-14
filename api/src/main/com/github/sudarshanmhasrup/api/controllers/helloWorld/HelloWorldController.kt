@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class HelloWorldController {
 
-    @GetMapping("/hello-world")
+    @GetMapping("/v1/hello-world")
     fun getHelloWorld(): HelloWorldControllerResponse {
         return HelloWorldControllerResponse(
             statusCode = 200,
