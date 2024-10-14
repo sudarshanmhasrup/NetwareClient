@@ -1,6 +1,7 @@
 package com.github.sudarshanmhasrup.api.controllers.helloWorld
 
 import netware.client.RequestClient
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class HelloWorldControllerTest {
@@ -13,5 +14,9 @@ class HelloWorldControllerTest {
             method = "GET"
         ).build()
 
+        assertEquals("""
+            Status code: 200, Status: No status found.
+            Response: {"statusCode":200,"message":"Hello World!"}
+        """.trimIndent(), requestClient.response().getLog())
     }
 }
