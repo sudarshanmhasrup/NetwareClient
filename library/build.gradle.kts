@@ -14,6 +14,7 @@ dependencies {
     implementation(libs.gson)
     testImplementation(libs.jupiterApi)
     testImplementation(libs.jupiterEngine)
+    testImplementation(libs.junitPlatformLauncher)
 }
 
 // Source and test directory
