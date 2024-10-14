@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class CustomGreetingsController {
 
-    @PostMapping("/v1/display-message")
+    @PostMapping("/v1/display-custom-message")
     fun displayMessage(@RequestBody message: String): CustomGreetingsResponse {
         return CustomGreetingsResponse(
             statusCode = 200,

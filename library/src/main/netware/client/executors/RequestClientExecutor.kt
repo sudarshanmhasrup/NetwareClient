@@ -61,6 +61,7 @@ internal class RequestClientExecutor(
 
         if (networkRequestBody != null) {
             networkRequestConnection.doInput = true
+            networkRequestConnection.doOutput = true
             OutputStreamWriter(networkRequestConnection.outputStream).use { writer ->
                 writer.write(networkRequestBody)
                 writer.flush()
