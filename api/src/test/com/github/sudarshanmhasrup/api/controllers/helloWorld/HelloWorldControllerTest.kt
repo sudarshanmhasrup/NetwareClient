@@ -9,10 +9,9 @@ class HelloWorldControllerTest {
     fun testHelloWorldEndpoint() {
 
         val requestClient = RequestClient(
-            url = "http://localhost:8080/v1/hello-world",
+            url = "http://localhost:8000/v1/hello-world",
             method = "GET"
         ).build()
-
 
     }
 }

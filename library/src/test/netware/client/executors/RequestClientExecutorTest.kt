@@ -23,7 +23,7 @@ class RequestClientExecutorTest {
     fun testExecuteNetworkRequestFunction() {
 
         val requestClientExecutor = RequestClientExecutor(
-            networkRequestUrl = "http://localhost:8080/v1/hello-world",
+            networkRequestUrl = "http://localhost:8000/v1/hello-world",
             networkRequestMethod = "GET"
         ).executeNetworkRequest(isHTTPs = false)
 
