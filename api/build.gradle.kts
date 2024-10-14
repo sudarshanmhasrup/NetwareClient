@@ -9,6 +9,7 @@ repositories {
 dependencies {
     implementation(libs.springBootStarterWeb)
     implementation(project(":library"))
+    implementation(libs.kotlixSerialization)
     testImplementation(libs.jupiterApi)
     testImplementation(libs.jupiterEngine)
     testImplementation(libs.junitPlatformLauncher)

@@ -1,5 +1,7 @@
 package com.github.sudarshanmhasrup.api.controllers.customGreetings
 
-
-class CustomGreetingsResponse {
-}
+@Serializable
+data class CustomGreetingsResponse(
+    val statusCode: Int,
+    val message: String
+)
