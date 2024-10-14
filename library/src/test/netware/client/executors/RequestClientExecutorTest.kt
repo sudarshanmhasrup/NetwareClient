@@ -22,5 +22,14 @@ class RequestClientExecutorTest {
     @Test
     fun testExecuteNetworkRequestFunction() {
 
+        val requestClientExecutor = RequestClientExecutor(
+            networkRequestUrl = "http://localhost:8080/v1/hello-world",
+            networkRequestMethod = "GET"
+        ).executeNetworkRequest(isHTTPs = false)
+
+        assertEquals("""
+            Status code: 200, Status: No status found.
+            Response: {"statusCode":200,"message":"Hello World!"}
+        """.trimIndent(), requestClientExecutor.getRequestResponse().getLog())
     }
 }

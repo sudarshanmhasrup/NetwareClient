@@ -43,12 +43,11 @@ internal class RequestClientExecutor(
 
         val networkRequestUri = URI(networkRequestUrl)
         val networkRequestUrl = networkRequestUri.toURL()
-        var result = HttpResponseContainer()
 
         val networkRequestConnection = if (isHTTPs) {
-            networkRequestUrl.openConnection() as HttpURLConnection
-        } else {
             networkRequestUrl.openConnection() as HttpsURLConnection
+        } else {
+            networkRequestUrl.openConnection() as HttpURLConnection
         }
 
         networkRequestConnection.requestMethod = networkRequestMethod
@@ -80,7 +79,9 @@ internal class RequestClientExecutor(
             networkRequestConnection.headerFields.forEach {
                 responseHeaders[it.key] = it.value.toString()
             }
-            result = HttpResponseContainer(
+
+            networkRequestConnection.disconnect()
+            return HttpResponseContainer(
                 isSuccess = true,
                 requestResponse = RequestResponse(
                     statusCode = serverResponseStatusCode,
@@ -90,14 +91,10 @@ internal class RequestClientExecutor(
                 )
             )
         } catch (exception: Exception) {
-            result = HttpResponseContainer(
+            return HttpResponseContainer(
                 isSuccess = false,
                 requestError = requestClientExceptionDecoder(exception)
             )
-        } finally {
-            networkRequestConnection.disconnect()
         }
-
-        return result
     }
 }

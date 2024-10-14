@@ -77,7 +77,7 @@ class RequestClientTest {
         ).build()
 
         assertEquals("""
-                Status code: 1000, Status: Failed.
+                Status code: 400, Status: Bad request.
                 Message: "SET" is not a valid HTTP method.
             """.trimIndent(), requestClient.error().getLog())
     }

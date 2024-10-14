@@ -56,8 +56,8 @@ class RequestClient(
     }
 
     val invalidNetworkRequestLog = RequestError(
-        statusCode = 1000,
-        status = "Failed",
+        statusCode = 400,
+        status = "Bad request",
         message = "\"$networkRequestMethod\" is not a valid HTTP method."
     )
 
@@ -67,14 +67,14 @@ class RequestClient(
             isSuccess = false
             clientCallback.onError(
                 requestError = RequestError(
-                    statusCode = 1000,
-                    status = "Failed",
+                    statusCode = 400,
+                    status = "Bad request",
                     message = "\"$networkRequestMethod\" is not a valid HTTP method."
                 )
             )
             error = RequestError(
-                statusCode = 1000,
-                status = "Failed",
+                statusCode = 400,
+                status = "Bad request",
                 message = "\"$networkRequestMethod\" is not a valid HTTP method."
             )
         } else {
@@ -88,8 +88,8 @@ class RequestClient(
         if (!isNetworkRequestMethodIsValid()) {
             isSuccess = false
             error = RequestError(
-                statusCode = 1000,
-                status = "Failed",
+                statusCode = 400,
+                status = "Bad request",
                 message = "\"$networkRequestMethod\" is not a valid HTTP method."
             )
         } else {

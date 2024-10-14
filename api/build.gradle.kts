@@ -8,6 +8,8 @@ repositories {
 
 dependencies {
     implementation(libs.springBootStarterWeb)
+    testImplementation(libs.jupiterApi)
+    testImplementation(libs.jupiterEngine)
 }
 
 // Source directory
@@ -18,4 +20,8 @@ sourceSets {
     test {
         kotlin.srcDirs("src/test")
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
