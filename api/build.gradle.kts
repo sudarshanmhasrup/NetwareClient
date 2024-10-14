@@ -11,6 +11,7 @@ dependencies {
     implementation(project(":library"))
     testImplementation(libs.jupiterApi)
     testImplementation(libs.jupiterEngine)
+    testImplementation(libs.junitPlatformLauncher)
 }
 
 // Source directory
