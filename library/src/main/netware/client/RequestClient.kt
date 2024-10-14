@@ -1,6 +1,7 @@
 package netware.client
 
 import netware.client.callbacks.ClientCallback
+import netware.client.executors.RequestClientExecutor
 import netware.client.holders.RequestError
 import netware.client.holders.RequestResponse
 
@@ -79,6 +80,22 @@ class RequestClient(
             )
         } else {
 
+            val requestClientExecutor = RequestClientExecutor(
+                networkRequestUrl = networkRequestUrl,
+                networkRequestMethod = networkRequestMethod,
+                networkRequestHeaders = networkRequestHeaders,
+                networkRequestBody = networkRequestBody
+            ).validateNetworkRequest()
+
+            if (requestClientExecutor.isSuccess()) {
+                clientCallback.onSuccess(
+                    requestResponse = requestClientExecutor.getRequestResponse()
+                )
+            } else {
+                clientCallback.onError(
+                    requestError = requestClientExecutor.getRequestError()
+                )
+            }
         }
         return this
     }
@@ -94,6 +111,20 @@ class RequestClient(
             )
         } else {
 
+            val requestClientExecutor = RequestClientExecutor(
+                networkRequestUrl = networkRequestUrl,
+                networkRequestMethod = networkRequestMethod,
+                networkRequestHeaders = networkRequestHeaders,
+                networkRequestBody = networkRequestBody
+            ).validateNetworkRequest()
+
+            if (requestClientExecutor.isSuccess()) {
+                isSuccess = true
+                response = requestClientExecutor.getRequestResponse()
+            } else {
+                isSuccess = false
+                error = requestClientExecutor.getRequestError()
+            }
         }
         return this
     }
