@@ -18,4 +18,9 @@ class RequestClientExecutorTest {
             Message: The request protocol is invalid.
         """.trimIndent(), requestClientExecutor.validateNetworkRequest().getRequestError().getLog())
     }
+
+    @Test
+    fun testExecuteNetworkRequestFunction() {
+
+    }
 }

@@ -17,10 +17,10 @@ internal class RequestClientExecutor(
     internal fun validateNetworkRequest(): HttpResponseContainer {
         return when {
             networkRequestUrl.startsWith("http://") -> {
-                executeRequestUrl(isHTTPs = false)
+                executeNetworkRequest(isHTTPs = false)
             }
             networkRequestUrl.startsWith("https://") -> {
-                executeRequestUrl(isHTTPs = true)
+                executeNetworkRequest(isHTTPs = true)
             }
             else ->
                 HttpResponseContainer(
@@ -34,7 +34,7 @@ internal class RequestClientExecutor(
         }
     }
 
-    internal fun executeRequestUrl(isHTTPs: Boolean): HttpResponseContainer {
+    internal fun executeNetworkRequest(isHTTPs: Boolean): HttpResponseContainer {
 
         val networkRequestUri = URI(networkRequestUrl)
         val networkRequestUrl = networkRequestUri.toURL()
