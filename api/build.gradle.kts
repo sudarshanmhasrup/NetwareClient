@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.kotlinSpring)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 repositories {
