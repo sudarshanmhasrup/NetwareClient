@@ -32,4 +32,4 @@ tasks.test {
 }
 
 // Build directory
-layout.buildDirectory.set(file("${rootDir}/build/library"))
+layout.buildDirectory.set(file("${rootDir}/.build/library"))

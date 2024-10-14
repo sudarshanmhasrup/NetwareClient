@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.github.sudarshanmhasrup.api.controllers.helloWorld.HelloWorldControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-10-14T08:20:31" hostname="TUF-A17" time="0.036">
+  <properties/>
+  <testcase name="testHelloWorldEndpoint()" classname="com.github.sudarshanmhasrup.api.controllers.helloWorld.HelloWorldControllerTest" time="0.036"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
