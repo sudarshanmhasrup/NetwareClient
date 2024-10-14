@@ -16,7 +16,7 @@ dependencies {
 // Source directory
 sourceSets {
     main {
-        kotlin.srcDirs("src/main")
+        kotlin.srcDirs("src/main/kotlin")
     }
     test {
         kotlin.srcDirs("src/test")
