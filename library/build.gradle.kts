@@ -1,13 +1,17 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("maven-publish")
 }
 
 // Library metadata
-private val groupId = "com.github.sudarshanmhasrup"
-private val artifactId = "netwareclient"
+private val groupName = "io.github.sudarshanmhasrup"
+private val artifactName = "netwareclient"
 private val releaseVersion = "1.0.0-SNAPSHOT"
+private val libraryDescription = "Netware Client is an HTTP library with purpose of making networking easier in Kotlin and Java."
 
-group = groupId
+group = groupName
 version = releaseVersion
 
 repositories {
@@ -37,3 +41,31 @@ tasks.test {
 
 // Build directory
 layout.buildDirectory.set(file("${rootDir}/.build/library"))
+
+// Properties
+val properties = Properties().apply {
+    FileInputStream("${rootDir}/library/config.properties").use { load(it) }
+}
+
+// Publishing
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+
+            groupId = groupName
+            version = releaseVersion
+            artifactId = artifactName
+        }
+    }
+
+    repositories {
+        maven {
+            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = properties.getProperty("sonatypeUsername") ?: ""
+                password = properties.getProperty("sonatypePassword") ?: ""
+            }
+        }
+    }
+}

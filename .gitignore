@@ -9,3 +9,6 @@
 
 # Build
 .build
+
+# Configuration properties
+library/config.properties
