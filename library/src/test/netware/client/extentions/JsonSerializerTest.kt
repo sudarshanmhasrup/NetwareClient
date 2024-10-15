@@ -19,7 +19,7 @@ class JsonSerializerTest {
             message = "Hello World"
         )
 
-        val actualResult = Serializer.jsonSerializer(response)
+        val actualResult = Serializer.serialize(response)
 
         assertEquals(expectedResult, actualResult)
     }
