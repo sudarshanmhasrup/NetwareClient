@@ -13,7 +13,7 @@ dependencies {
 // Source directory
 sourceSets {
     main {
-        java.srcDirs("src/java")
+        java.srcDirs("main")
     }
 }
 

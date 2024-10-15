@@ -114,6 +114,8 @@ internal class RequestClientExecutor(
                 isSuccess = false,
                 requestError = requestClientExceptionDecoder(exception)
             )
+        } finally {
+            networkRequestConnection.disconnect()
         }
     }
 }
