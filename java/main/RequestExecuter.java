@@ -6,7 +6,7 @@ import netware.client.holders.RequestError;
 import netware.client.holders.RequestResponse;
 import org.jetbrains.annotations.NotNull;
 
-public class RequestExecutor {
+public class RequestExecuter {
 
     void execute() {
 
@@ -26,6 +26,5 @@ public class RequestExecutor {
         } else {
             System.out.println(requestClient.error().getLog(true));
         }
-
     }
 }

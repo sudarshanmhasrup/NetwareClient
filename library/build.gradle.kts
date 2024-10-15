@@ -47,11 +47,5 @@ kotlin {
     }
 }
 
-javaToolchains {
-    repositories {
-        mavenCentral()
-    }
-}
-
 // Build directory
 layout.buildDirectory.set(file("${rootDir}/.build/library"))
