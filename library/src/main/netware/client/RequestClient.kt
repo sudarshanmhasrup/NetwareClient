@@ -54,6 +54,21 @@ class RequestClient(
         addHeaders(headers)
     }
 
+    fun method(method: String): RequestClient {
+        networkRequestMethod = method
+        return this
+    }
+
+    fun headers(headers: Map<String, String>): RequestClient {
+        addHeaders(headers)
+        return this
+    }
+
+    fun body(body: String): RequestClient {
+        networkRequestBody = body
+        return this
+    }
+
     // Secondary constructor 5
     constructor(url: String, method: String, body: String) : this(url) {
         networkRequestMethod = method

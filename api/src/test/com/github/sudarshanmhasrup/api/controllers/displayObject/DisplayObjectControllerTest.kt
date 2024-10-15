@@ -3,7 +3,7 @@ package com.github.sudarshanmhasrup.api.controllers.displayObject
 import com.github.sudarshanmhasrup.api.controllers.displayObject.dataClass.CustomObject
 import netware.client.RequestClient
 import netware.client.extensions.RequestHeaders
-import netware.client.extensions.jsonSerializer
+import netware.client.extensions.Serializer
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -25,7 +25,7 @@ class DisplayObjectControllerTest {
             url = "http://localhost:8000/v1/display-custom-object",
             method = "POST",
             headers = requestHeaders.getHeaders(),
-            body = jsonSerializer(customObject)
+            body = Serializer.jsonSerializer(customObject)
         ).build()
 
         assertEquals("""
