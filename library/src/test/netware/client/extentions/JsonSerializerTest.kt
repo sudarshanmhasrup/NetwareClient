@@ -1,6 +1,6 @@
 package netware.client.extentions
 
-import netware.client.extensions.jsonSerializer
+import netware.client.extensions.Serializer
 import netware.client.extentions.dataClass.Response
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -19,7 +19,7 @@ class JsonSerializerTest {
             message = "Hello World"
         )
 
-        val actualResult = jsonSerializer(response)
+        val actualResult = Serializer.jsonSerializer(response)
 
         assertEquals(expectedResult, actualResult)
     }

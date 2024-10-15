@@ -41,31 +41,3 @@ tasks.test {
 
 // Build directory
 layout.buildDirectory.set(file("${rootDir}/.build/library"))
-
-// Properties
-val properties = Properties().apply {
-    FileInputStream("${rootDir}/library/config.properties").use { load(it) }
-}
-
-// Publishing
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
-
-            groupId = groupName
-            version = releaseVersion
-            artifactId = artifactName
-        }
-    }
-
-    repositories {
-        maven {
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = properties.getProperty("sonatypeUsername") ?: ""
-                password = properties.getProperty("sonatypePassword") ?: ""
-            }
-        }
-    }
-}
