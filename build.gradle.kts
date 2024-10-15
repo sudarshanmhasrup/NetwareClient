@@ -11,4 +11,8 @@ subprojects {
         mavenCentral()
         gradlePluginPortal()
     }
+
+    dependencies {
+        implementation(kotlin("stdlib"))
+    }
 }
