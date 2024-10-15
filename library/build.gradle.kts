@@ -1,5 +1,5 @@
 plugins {
-
+    id("maven-publish")
 }
 
 // Library metadata
