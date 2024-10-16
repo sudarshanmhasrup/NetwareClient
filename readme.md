@@ -2,11 +2,11 @@
 Netware Client is a straightforward networking library to simplify networking in Kotlin and Java. This library is created to simplify the process of sending and receiving data between clients and servers. Please refer to the following documentation to learn how you can use this library in your project. [View the documentation](https://netwareclient.vercel.app/)
 
 Netware Client supports the following operations:
-- Send `GET`, `POST`, `PATCH`, and `DELETE` HTTP requests.
+- Perform `GET`, `PUT`, `POST`, `PATCH`, and `DELETE` HTTP requests.
 - Send headers along with the network requests.
-- Accept server response in `JSON` format.
-- Send request body in `JSON` format.
-- Display response in well format.
+- Accept server response in `JSON` or `String` format.
+- Send request body in `JSON` or `String` format.
+- Display response and error logs in well format.
 
 ### About the project directory structure.
 I have divided this project into sub-modules so it will be easy  going through the source code of this project for anyone who's willing to go through the proejct source code. I have also added API module and make sure you run it first before starting your walkthrough.
