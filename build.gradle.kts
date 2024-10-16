@@ -16,3 +16,5 @@ subprojects {
         implementation(kotlin("stdlib"))
     }
 }
+
+layout.buildDirectory.set(file("${rootDir}/.build/netwareclient"))
