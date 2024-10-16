@@ -60,24 +60,24 @@ internal class RequestClientExecutor(
             networkRequestUrl.openConnection() as HttpURLConnection
         }
 
-        networkRequestConnection.requestMethod = networkRequestMethod
-
-        if (networkRequestHeaders != null) {
-            for ((key, value) in networkRequestHeaders) {
-                networkRequestConnection.setRequestProperty(key, value)
-            }
-        }
-
-        if (networkRequestBody != null) {
-            networkRequestConnection.doInput = true
-            networkRequestConnection.doOutput = true
-            OutputStreamWriter(networkRequestConnection.outputStream).use { writer ->
-                writer.write(networkRequestBody)
-                writer.flush()
-            }
-        }
-
         try {
+
+            networkRequestConnection.requestMethod = networkRequestMethod
+
+            if (networkRequestHeaders != null) {
+                for ((key, value) in networkRequestHeaders) {
+                    networkRequestConnection.setRequestProperty(key, value)
+                }
+            }
+
+            if (networkRequestBody != null) {
+                networkRequestConnection.doInput = true
+                networkRequestConnection.doOutput = true
+                OutputStreamWriter(networkRequestConnection.outputStream).use { writer ->
+                    writer.write(networkRequestBody)
+                    writer.flush()
+                }
+            }
 
             val serverResponseStatusCode = networkRequestConnection.responseCode
             val serverResponseStatus = networkRequestConnection.responseMessage ?: "No status found"
