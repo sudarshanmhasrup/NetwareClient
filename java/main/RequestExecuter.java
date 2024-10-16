@@ -1,10 +1,6 @@
 import netware.client.RequestClient;
-import netware.client.callbacks.ClientCallback;
 import netware.client.extensions.RequestHeaders;
 import netware.client.extensions.Serializer;
-import netware.client.holders.RequestError;
-import netware.client.holders.RequestResponse;
-import org.jetbrains.annotations.NotNull;
 
 public class RequestExecuter {
 
