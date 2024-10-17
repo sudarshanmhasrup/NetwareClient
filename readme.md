@@ -18,6 +18,73 @@ I have divided this project into sub-modules so it will be easy  going through t
 
 
 ### Examples
+The following code snippet is an example of how you can send a network request in Kotlin using `Netware Client`. 
+There are two ways to handle network request results: `Without callback` and `With callback`.
+- Example in Kotlin: Without callback
+```kotlin
+import netware.client.RequestClient
+
+class NetworkRequest {
+
+    fun execute() {
+
+        val requestClient = RequestClient(
+            url = "http://localhost:3000/v1/hello-world",
+            method = "GET"
+        ).build()
+
+        if (requestClient.isSuccess()) {
+            println(requestClient.response().getLog(
+                isFormatted = true
+            ))
+        } else {
+            println(requestClient.error().getLog(
+                isFormatted = true
+            ))
+        }
+    }
+}
+
+fun main() {
+    val networkRequest = NetworkRequest()
+    networkRequest.execute()
+}
+```
+- Example in Java: With callback
+```kotlin
+import netware.client.RequestClient
+import netware.client.callbacks.ClientCallback
+import netware.client.holders.RequestError
+import netware.client.holders.RequestResponse
+
+class NetworkRequest {
+
+    fun execute() {
+
+        val requestClient = RequestClient(
+            url = "http://localhost:3000/v1/hello-world",
+            method = "GET"
+        ).build(object: ClientCallback {
+            override fun onSuccess(requestResponse: RequestResponse) {
+                println(requestResponse.getLog(
+                    isFormatted = true
+                ))
+            }
+
+            override fun onError(requestError: RequestError) {
+                println(requestError.getLog(
+                    isFormatted = true
+                ))
+            }
+        })
+    }
+}
+
+fun main() {
+    val networkRequest = NetworkRequest()
+    networkRequest.execute()
+}
+```
 The following code snippet is an example of how you can send a network request in Java using `Netware Client`. 
 There are two ways to handle network request results: `Without callback` and `With callback`.
 
