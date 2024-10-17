@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class NestedResponseController {
 
-    @GetMapping("/v1//v1/get-nested-response")
+    @GetMapping("/v1/get-nested-response")
     fun methodFunction(): Response {
         return Response(
             statusCode = 200,
