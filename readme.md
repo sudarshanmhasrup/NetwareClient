@@ -18,19 +18,17 @@ I have divided this project into sub-modules so it will be easy  going through t
 
 
 ### Examples
+Following code snippet is a example of you can send a network request in Java using `Netware Client`.
 ```java
 import netware.client.RequestClient;
-import netware.client.extensions.RequestHeaders;
-import netware.client.extensions.Serializer;
 
-public class RequestExecuter {
-
-    void execute() {
-
-        RequestClient requestClient = new RequestClient("http://localhost:8000/v1/hello-world")
+class NetworkRequest {
+    
+    void executeRequest() {
+        RequestClient requestClient = new RequestClient("http://localhost:3000/v1/hello-world")
                 .method("GET")
                 .build();
-
+        
         if (requestClient.isSuccess()) {
             System.out.println(requestClient.response().getLog(true));
         } else {
@@ -38,7 +36,50 @@ public class RequestExecuter {
         }
     }
 }
+
+public class Main {
+    public static void main(String[] args) {
+        
+        NetworkRequest networkRequest = new NetworkRequest();
+        networkRequest.executeRequest();
+    }
+}
 ```
+
+```Java
+import netware.client.RequestClient;
+import netware.client.callbacks.ClientCallback;
+import netware.client.holders.RequestError;
+import netware.client.holders.RequestResponse;
+import org.jetbrains.annotations.NotNull;
+
+class NetworkRequest {
+
+    void executeRequest() {
+        RequestClient requestClient = new RequestClient("http://localhost:3000/v1/hello-world")
+                .method("GET")
+                .build(new ClientCallback() {
+                    @Override
+                    public void onSuccess(@NotNull RequestResponse requestResponse) {
+                        System.out.println(requestResponse.getLog(true));
+                    }
+
+                    @Override
+                    public void onError(@NotNull RequestError requestError) {
+                        System.out.println(requestError.getLog(true));
+                    }
+                });
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        NetworkRequest networkRequest = new NetworkRequest();
+        networkRequest.executeRequest();
+    }
+}
+``` 
 
 ### Background story
 
