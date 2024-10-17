@@ -1,5 +1,6 @@
 package netware.client.holders
 
+import com.google.gson.Gson
 import netware.client.holders.util.Holders
 import netware.client.holders.util.formattedResponse
 
@@ -16,6 +17,12 @@ data class RequestResponse(
     fun getStatus() = status
     fun getResponse() = response
     fun getResponseHeaders() = responseHeaders
+
+    fun getResponse(dataClass: Any) {
+        val gson = Gson()
+        val jsonResponse = gson.toJson(response)
+        val deserializedResponse = gson.fromJson(jsonResponse, dataClass::class.java)
+    }
 
     // Log functions
     fun getLog(isFormatted: Boolean): String {
