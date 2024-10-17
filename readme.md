@@ -27,10 +27,8 @@ public class RequestExecuter {
 
     void execute() {
 
-        RequestClient requestClient = new RequestClient("http://localhost:8000/v1/display-custom-object")
-                .method("POST")
-                .headers(requestHeaders.getHeaders())
-                .body(Serializer.serialize(requestBody))
+        RequestClient requestClient = new RequestClient("http://localhost:8000/v1/hello-world")
+                .method("GET")
                 .build();
 
         if (requestClient.isSuccess()) {
