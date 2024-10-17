@@ -8,6 +8,57 @@ Netware Client supports the following operations:
 - Send request body in `JSON` or `String` format.
 - Display response and error logs in well format.
 
+### Add to your project
+
+This library can be used in Java or Kotlin project that uses Gradle build system. I’m also planning to add support for project that uses Maven build system. Follow the following steps to add the library to your project.
+
+***Step 1:*** Add the following line in your project's `build.gradle` or `build.gradle.kts` file depending upon which build type you have chosen for your project and click on sync.
+
+- **For `build.gradle.kts`:**
+```groovy
+maven { url = uri("https://jitpack.io") }
+```
+
+- **For `build.gradle`:**
+```groovy
+maven { url "https://jitpack.io" }
+```
+
+You may wonder where to add the above lines in your Java or Kotlin project. Don't worry, you may find the following code structure in your `build.gradle` or `build.gradle.kts` file. Just copy and paste the above line in your code structure.
+
+```groovy
+// Your code structure inside repositories should look like this
+repositories {
+    mavenCentral()
+    maven { url = uri("https://jitpack.io") }
+}
+```
+
+***Step 2:*** Add this following line in your project's `build.gradle` or `build.gradle.kts` and click on sync.
+
+- **For `build.gradle.kts`:**
+```groovy
+implementation("com.github.sudarshanmhasrup:netwareclient:v0.0.8-alpha")
+```
+
+- **For `build.gradle`:**
+```groovy
+implementation "com.github.sudarshanmhasrup:netwareclient:v0.0.8-alpha"
+```
+
+Where to add the above lines? You may find the following code structure in your `build.gradle` or `build.gradle.kts` file. Just copy and paste the above line in your code structure.
+```groovy
+dependencies {
+
+    // Insert the above line here
+    implementation("com.github.sudarshanmhasrup:netwareclient:v0.0.8-alpha")
+    
+    // Your another project dependencies
+}
+```
+
+Once it's done, then congratulate to yourself; now you're ready to use ***Netware Client*** for your project.
+
 ### About the project directory structure.
 I have divided this project into sub-modules so it will be easy  going through the source code of this project for anyone who's willing to go through the proejct source code. I have also added API module and make sure you run it first before starting your walkthrough.
 - `/api`: This module contains API logic.
