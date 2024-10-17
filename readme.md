@@ -18,7 +18,10 @@ I have divided this project into sub-modules so it will be easy  going through t
 
 
 ### Examples
-Following code snippet is a example of you can send a network request in Java using `Netware Client`.
+The following code snippet is an example of how you can send a network request in Java using `Netware Client`. 
+There are two ways to handle network request results: `Without callback` and `With callback`.
+
+- Example in Java: Without callback
 ```java
 import netware.client.RequestClient;
 
@@ -46,6 +49,7 @@ public class Main {
 }
 ```
 
+- Example in Java: With callback
 ```Java
 import netware.client.RequestClient;
 import netware.client.callbacks.ClientCallback;
