@@ -16,6 +16,37 @@ I have divided this project into sub-modules so it will be easy  going through t
 - `/kotlin`: This module contains a sample of NetwareClient usages in Kotlin.
 - `/library`: This is the main module of this project and contains library logic.
 
+
+### Examples
+```java
+import netware.client.RequestClient;
+import netware.client.extensions.RequestHeaders;
+import netware.client.extensions.Serializer;
+
+public class RequestExecuter {
+
+    void execute() {
+
+        RequestHeaders requestHeaders = new RequestHeaders()
+                .add("Content-Type", "application/json");
+
+        RequestBody requestBody = new RequestBody("John", "Doe");
+
+        RequestClient requestClient = new RequestClient("http://localhost:8000/v1/display-custom-object")
+                .method("POST")
+                .headers(requestHeaders.getHeaders())
+                .body(Serializer.serialize(requestBody))
+                .build();
+
+        if (requestClient.isSuccess()) {
+            System.out.println(requestClient.response().getLog(true));
+        } else {
+            System.out.println(requestClient.error().getLog(true));
+        }
+    }
+}
+```
+
 ### Background story
 
 When I was learning how to send network requests in Java and later on in Kotlin, I realized that there is no easy way to do that. Even though there are libraries available in the market like Volley, Ktor Client, Fuel, etc., these libraries are complicated to implement and not so easy to get started as a beginer. With simplification and efficiency in mind, I decided to work on this library. To make this library mature and more efficient, I need contributors. If anyone who's reading this finds my idea interesting, then you can definitely contribute to this project. Just keep one thing in mind: we have to make this library as simple as possible to implement and efficient to handle all networking tasks in Kotlin and Java. You can contact me using this email: sudarshanmhasrup@gmail.com.
