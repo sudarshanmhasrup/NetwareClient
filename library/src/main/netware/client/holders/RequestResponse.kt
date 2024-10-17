@@ -9,7 +9,7 @@ import netware.client.holders.util.formattedResponse
 data class RequestResponse(
     private val statusCode: Int = 0,
     private val status: String = "No status found",
-    private val response: String = "No response found",
+    internal val response: String = "No response found",
     private val responseHeaders: Map<String, String> = mutableMapOf("status" to "No headers found")
 ) {
 
@@ -18,12 +18,11 @@ data class RequestResponse(
     fun getResponse() = response
     fun getResponseHeaders() = responseHeaders
 
-    fun getResponse(dataClass: Any) {
-        val gson = Gson()
-        val jsonResponse = gson.toJson(response)
-        val deserializedResponse = gson.fromJson(jsonResponse, dataClass::class.java)
-    }
+    inline fun <reified T: Any> getResponse(): T {
 
+        val serializedObject = Gson().fromJson(getResponse(), T::class.java)
+        return serializedObject
+    }
     // Log functions
     fun getLog(isFormatted: Boolean): String {
         return if (isFormatted) {
