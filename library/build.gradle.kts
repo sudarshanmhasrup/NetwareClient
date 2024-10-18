@@ -47,5 +47,21 @@ kotlin {
     }
 }
 
+// Publishing
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+            groupId = groupName
+            artifactId = artifactName
+            version = releaseVersion
+        }
+
+        repositories {
+            mavenCentral()
+        }
+    }
+}
+
 // Build directory
 layout.buildDirectory.set(file("${rootDir}/.build/library"))
