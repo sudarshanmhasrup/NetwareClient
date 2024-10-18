@@ -59,8 +59,11 @@ dependencies {
 
 Once it's done, then congratulate to yourself; now you're ready to use ***Netware Client*** for your project.
 
+### Instructions for running this project locally
+- Make sure you run the spring boot application before building the library or any module.
+
 ### About the project directory structure.
-I have divided this project into sub-modules so it will be easy  going through the source code of this project for anyone who's willing to go through the proejct source code. I have also added API module and make sure you run it first before starting your walkthrough.
+I have divided this project into submodules so it will be easy  going through the source code of this project for anyone who's willing to go through the proejct source code. I have also added API module and make sure you run it first before starting your walkthrough.
 - `/api`: This module contains API logic.
 - `/gradle`: Contains gradle metadata.
 - `/java`: This contains a sample of NetwareClient usages in Java.
