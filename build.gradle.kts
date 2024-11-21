@@ -1,20 +1,4 @@
-// Top level gradle build file which applies Kotlin JVM plugin to all subjects
+// Top level gradle build file
 plugins {
-    alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotlin) apply false
 }
-
-subprojects {
-
-    apply(plugin = "org.jetbrains.kotlin.jvm")
-
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-    }
-
-    dependencies {
-        implementation(kotlin("stdlib"))
-    }
-}
-
-layout.buildDirectory.set(file("${rootDir}/.build/netwareclient"))

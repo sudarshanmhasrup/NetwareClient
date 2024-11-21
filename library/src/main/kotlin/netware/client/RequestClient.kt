@@ -16,7 +16,7 @@ parameters, enabling the user to bypass unnecessary parameter lists when using i
     4) DELETE.
     5) PUT.
 
-    This class let's library users to handle the network requests using callback and without callback build functions.
+    This class lets library users to handle the network requests using callback and without callback build functions.
 Also, this class uses the RequestClientExecutor class behind the scenes to execute network requests.
  */
 @Suppress("unused")

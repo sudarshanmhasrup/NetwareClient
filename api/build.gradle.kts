@@ -1,10 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinSpring)
     alias(libs.plugins.kotlinSerialization)
-}
-
-repositories {
-    mavenCentral()
+    alias(libs.plugins.kotlin)
 }
 
 dependencies {

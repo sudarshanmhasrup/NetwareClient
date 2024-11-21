@@ -1,5 +1,5 @@
-repositories {
-    mavenCentral()
+plugins {
+    alias(libs.plugins.kotlin)
 }
 
 dependencies {
